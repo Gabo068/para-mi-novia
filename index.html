@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, mi amor 🐻❤️🐰</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* PALETA DE COLORES PASTEL */
+            --bg-color: #fff0f5;       /* Fondo rosado muy suave */
+            --text-color: #5c4e4e;     /* Marrón suave (letras) */
+            --accent-color: #ff99ac;   /* Rosa chicle (detalles) */
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            /* Patrón de lunares (Polka Dots) */
+            background-image: radial-gradient(#ffcce0 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.8s ease;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #ff6b81;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #fff;
+            text-align: center;
+        }
+
+        p.subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            background: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* --- IMAGEN DE PERSONAJES (Círculo central) --- */
+        .mascot-container {
+            width: 220px;
+            height: 220px;
+            background-color: white;
+            border-radius: 50%;
+            border: 6px solid white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mascot-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen cubra el círculo */
+        }
+
+        /* --- MENÚ DE BOTONES --- */
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .emotion-btn {
+            background: white;
+            border: 2px solid transparent;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(138, 107, 118, 0.1);
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+
+        .emotion-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- CARTA / MENSAJE (Oculto al inicio) --- */
+        #message-container {
+            display: none;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            margin-top: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
+            border: 4px dashed #ffb7c5;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            text-align: center;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            white-space: pre-line;
+            margin-bottom: 25px;
+        }
+
+        .close-btn {
+            background: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 107, 129, 0.4);
+            transition: transform 0.2s;
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.1);
+            background: #ff4757;
+        }
+
+        /* --- SECCIÓN GALERÍA --- */
+        .gallery-section {
+            margin-top: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            color: #8854d0;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 0px #fff;
+        }
+
+        .gallery-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+            width: 160px;
+            border-radius: 2px;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 10;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+            border: 1px solid #eee;
+        }
+        
+        .polaroid-caption {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* --- SECCIÓN SUBIR FOTOS (Integración) --- */
+        .upload-section {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            border: 4px dashed #ff99ac;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .padlet-container {
+            width: 100%;
+            height: 500px; /* Altura del área de carga */
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #eee;
+            background-color: #fafafa;
+            position: relative;
+        }
+
+        /* Estilo para el mensaje de "Aquí va el código" */
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #aaa;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        /* Iconos flotantes */
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="floating-icon" style="top: 10%; left: 10%;">🐻</div>
+    <div class="floating-icon" style="top: 20%; right: 15%;">🐰</div>
+    <div class="floating-icon" style="bottom: 15%; left: 20%;">❤️</div>
+    <div class="floating-icon" style="bottom: 40%; right: 10%;">✨</div>
+
+    <div class="mascot-container">
+        <img src="https://media.tenor.com/sQCzvx3U2J8AAAAi/milk-and-mocha.gif" alt="Nosotros">
+    </div>
+
+    <h1 id="main-title">Hola, mi niña hermosa❤️</h1>
+    <p class="subtitle">Dime, ¿cómo está tu corazoncito hoy?</p>
+
+    <div class="menu-container">
+        <button class="emotion-btn" onclick="mostrarCarta('alegria')">😊 Feliz</button>
+        <button class="emotion-btn" onclick="mostrarCarta('enojo')">😤 Enojada</button>
+        <button class="emotion-btn" onclick="mostrarCarta('tristeza')">🥺 Triste</button>
+        <button class="emotion-btn" onclick="mostrarCarta('frustracion')">😫 Frustrada</button>
+        <button class="emotion-btn" onclick="mostrarCarta('cansancio')">😴 Cansada</button>
+        <button class="emotion-btn" onclick="mostrarCarta('miedo')">😨 Con miedo</button>
+        <button class="emotion-btn" onclick="mostrarCarta('amor')">🥰 Mimosa</button>
+    </div>
+
+    <div id="message-container">
+        <div style="font-size: 3rem; margin-bottom: 10px;">💌</div>
+        <div id="letter-text" class="letter-content"></div>
+        <button class="close-btn" onclick="cerrarCarta()">Volver al inicio</button>
+    </div>
+
+    <div class="gallery-section">
+        <h2 class="section-title">Nuestros Momentos 📸</h2>
+        
+        <div class="gallery-grid">
+            <div class="polaroid">
+                <img src="4.jpeg" alt="Foto 1">
+                <img src="5.jpeg" alt="Foto 1.1">
+                <img src="6.jpeg" alt="Foto 1.2">
+                <div class="polaroid-caption">Primera Cita</div>
+            </div>
+
+            <div class="polaroid">
+                <img src="1.jpeg" alt="Foto 2">
+                <img src="2.jpeg" alt="Foto 2.1">
+                <div class="polaroid-caption">Pato Aventuras</div>
+            </div>
+
+            <div class="polaroid">
+                <img src="3.jpeg" alt="Foto 3">
+                <img src="7.jpeg" alt="Foto 3.1">
+                <img src="8.jpeg" alt="Foto 3.2">
+                <div class="polaroid-caption">Te amo</div>
+            </div>
+
+            </div>
+    </div>
+
+    <div class="upload-section">
+        <h2 class="section-title">✨ Sube nuestros recuerdos ✨</h2>
+        <p style="margin-bottom: 20px;">Mi amor, aquí puedes subir fotos desde tu celular para que queden guardadas en nuestro rinconcito.</p>
+        
+        <div class="<div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0;margin:0"><iframe src="https://padlet.com/embed/43ojbupy23qykqs5" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p><div style="display:flex;align-items:center;justify-content:end;margin:0;padding:8px 8px 8px 0"><a href="https://padlet.com?ref=embed" style="display:flex;align-items:center;gap:5px;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none" target="_blank"><span aria-hidden style="color:#9E9E9E;font-size:10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1">Made with</span><img src="https://padlet.net/emails/padlet_email_logo_2026_text-dark-200.png" height="12" style="padding:0;margin:0;background:0 0;border:none;box-shadow:none;display:block" alt="Hecho con Padlet"></a></div></div>">
+            <div class="placeholder-text">
+                <br>
+        
+            </div>
+            
+            </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE JAVASCRIPT ---
+
+        // Configuración de temas (Fondo y Texto)
+        const themes = {
+            alegria:     { bg: "#fff5cc", text: "#5c4e0a" }, // Amarillo
+            enojo:       { bg: "#ffd1d1", text: "#6e0a0a" }, // Rojo suave
+            tristeza:    { bg: "#d1e7ff", text: "#0a2b5c" }, // Azul
+            frustracion: { bg: "#ffeacc", text: "#663c00" }, // Naranja
+            cansancio:   { bg: "#e6e6fa", text: "#483d8b" }, // Lavanda
+            miedo:       { bg: "#dcd6f7", text: "#2e255e" }, // Morado
+            amor:        { bg: "#ffcce0", text: "#6e0a3a" }, // Rosa
+            default:     { bg: "#fff0f5", text: "#5c4e4e" }  // Base
+        };
+
+        // Mensajes por emoción
+        const cartas = {
+            alegria: [
+                "¡Tu felicidad es mi vitamina! Sigue brillando así mi amor. 🐻✨",
+                "Verte sonreír hace que todo valga la pena. ¡Te amo! 🐰💖"
+            ],
+            enojo: [
+                "Respira hondo, mi amor. Aquí estoy para ti, siempre. 🐻🧘‍♀️",
+                "Aunque te enojes, te ves hermosa. Pero no te estreses, lo resolveremos juntos. 🐰"
+            ],
+            tristeza: [
+                "Ven, que te doy un abrazo de oso gigante hasta que pase la pena. 🐻🤗",
+                "No estás sola, mi conejita valiente. Esto también pasará. 🐰🌧️"
+            ],
+            frustracion: [
+                "Eres muy inteligente, ya verás como encuentras la solución. 🐰💡",
+                "Tómate un break, un chocolate y vuelve a intentarlo con calma. 🐻🍫"
+            ],
+            cansancio: [
+                "A la camita, hoy has hecho mucho. Descansa mi vida. 🐻💤",
+                "Sueña con los angelitos (o conmigo). Te mereces un descanso. 🐰🌙"
+            ],
+            miedo: [
+                "Yo espanto a los monstruos por ti. No temas. 🐻🛡️",
+                "Dame la manita, juntos nada nos pasa. Estoy aquí. 🐰🤝"
+            ],
+            amor: [
+                "Eres lo mejor que me ha pasado en la vida. Gracias por existir. 🐻💘🐰",
+                "Mi corazón es tuyo hoy y siempre. Te amo infinito. 💖"
+            ]
+        };
+
+        function mostrarCarta(emocion) {
+            // 1. Cambiar colores
+            const tema = themes[emocion] || themes['default'];
+            document.body.style.backgroundColor = tema.bg;
+            document.body.style.color = tema.text;
+
+            // 2. Elegir mensaje
+            const mensajesDisponibles = cartas[emocion];
+            const mensaje = mensajesDisponibles[Math.floor(Math.random() * mensajesDisponibles.length)];
+            document.getElementById('letter-text').textContent = mensaje;
+            
+            // 3. Ocultar secciones principales para enfocar en la carta
+            document.querySelector('.menu-container').style.display = 'none';
+            document.getElementById('main-title').style.display = 'none';
+            document.querySelector('.subtitle').style.display = 'none';
+            document.querySelector('.mascot-container').style.display = 'none';
+            document.querySelector('.gallery-section').style.display = 'none';
+            document.querySelector('.upload-section').style.display = 'none';
+            
+            // 4. Mostrar carta
+            document.getElementById('message-container').style.display = 'block';
+        }
+
+        function cerrarCarta() {
+            // Restaurar vista inicial
+            document.getElementById('message-container').style.display = 'none';
+            document.querySelector('.menu-container').style.display = 'flex';
+            document.getElementById('main-title').style.display = 'block';
+            document.querySelector('.subtitle').style.display = 'block';
+            document.querySelector('.mascot-container').style.display = 'flex';
+            document.querySelector('.gallery-section').style.display = 'block';
+            document.querySelector('.upload-section').style.display = 'block';
+
+            // Restaurar color original
+            const tema = themes['default'];
+            document.body.style.backgroundColor = tema.bg;
+            document.body.style.color = tema.text;
+        }
+    </script>
+</body>
+</html>
