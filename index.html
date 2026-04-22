@@ -250,7 +250,36 @@
             z-index: -1;
             pointer-events: none;
         }
+            #flor-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    z-index: 999;
+}
 
+#flor-container iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.cerrar-flor{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff6b81;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
     </style>
 </head>
 <body>
@@ -340,7 +369,7 @@
 
         // Mensajes por emoción
         const cartas = {
-           alegria: [
+            alegria: [
                 "¡Tu felicidad es mi vitamina! Sigue brillando así mi amor. 🐻✨",
                 "Verte sonreír hace que todo valga la pena. ¡Te amo! 🐰💖",
                 "Tu sonrisa ilumina todo lo que tocas, nunca dejes de brillar así mi amor 🐰✨",
@@ -465,6 +494,18 @@
             document.body.style.backgroundColor = tema.bg;
             document.body.style.color = tema.text;
         }
+        function abrirFlor(){
+    document.getElementById("flor-container").style.display = "block";
+}
+
+function cerrarFlor(){
+    document.getElementById("flor-container").style.display = "none";
+}
     </script>
+    <button class="emotion-btn" onclick="abrirFlor()">🌼 Ver Regalito 🌼</button>
+    <div id="flor-container">
+    <button class="cerrar-flor" onclick="cerrarFlor()">✖</button>
+    <iframe src="flores_amarillas.html"></iframe>
+</div>
 </body>
 </html>
